@@ -1,6 +1,5 @@
-# import os
+import os
 
-# os.chdir("/home/spopoff/dev/langchain")
 import streamlit as st
 from langchain.embeddings.openai import OpenAIEmbeddings
 from langchain.chains.question_answering import load_qa_chain
@@ -8,10 +7,8 @@ from langchain.vectorstores import FAISS
 
 from langchain.llms import OpenAI
 from langchain import PromptTemplate
-from dotenv import load_dotenv
 
-# Load the .env file
-load_dotenv()
+api_key = os.getenv("OPENAI_KEY")
 
 MODEL = "gpt-3.5-turbo"
 TEMPERATURE = 0.7
