@@ -43,7 +43,7 @@ prompt = PromptTemplate(
 )
 
 
-default_query = "How to focus light through a scattering medium or a multimode fiber using wavefront shaping?"
+default_query = "How to focus light through a scattering medium using the transmission matrix?"
 
 
 def get_answer(chain, query):
@@ -55,20 +55,24 @@ def get_answer(chain, query):
 # Tell me how to display a phase gradient on my SLM using Python
 def app():
     # Streamlit app starts here
-    st.title("Ask Wavefront Shaping (Experimental))")
+    st.title("Ask Wavefront Shaping")
 
-    st.warning('Do not trust the results, this is experimental! (But you car trust the sources...))')
+    st.warning("""
+        WARNING: Do not trust the results, this is experimental!
+        (But you car trust the sources...)
+    """
+    )
 
     # model = st.selectbox("GPT Model", ("text-davinci-003", "gpt-3.5-turbo"))
 
     # temperature = st.slider("Temperature (higher is more creative)", 0.0, 1.0, (0.7))
 
-    llm = OpenAI(model_name=MODEL, temperature=TEMPERATURE, max_tokens=MAX_TOKENS)
+    llm = OpenAI(model_name=MODEL, temperature=TEMPERATURE, max_tokens=MAX_TOKENS, api_key=api_key)
     # chain = load_qa_chain(llm, chain_type="stuff")
     chain = load_qa_chain(llm=llm, chain_type="stuff", prompt=prompt)
 
     # Text input for the user's question
-    user_input = st.text_input("Ask a question", default_query)
+    user_input = st.text_input("Ask a question", '', placeholder=default_query)
 
     if st.button("Submit Question"):
         with st.spinner("Wait for it..."):
