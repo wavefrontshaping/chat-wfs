@@ -13,6 +13,7 @@ api_key = os.getenv("OPENAI_KEY")
 MODEL = "gpt-3.5-turbo"
 TEMPERATURE = 0.7
 MAX_TOKENS = 2048
+N_DOC_FOR_PROMPT = 4
 
 
 st.write()
@@ -21,7 +22,7 @@ with st.spinner("Loading data..."):
     # Initialize embeddings
     embeddings = OpenAIEmbeddings()
     db = FAISS.load_local("faiss_index", embeddings)
-    retriever = db.as_retriever(search_type="mmr", search_kwargs={"k": 6})
+    retriever = db.as_retriever(search_type="mmr", search_kwargs={"k": N_DOC_FOR_PROMPT})
 
 template = """
 Use the following pieces of context to answer the scientific question at the end. 
