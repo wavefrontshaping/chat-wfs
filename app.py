@@ -12,7 +12,7 @@ api_key = os.getenv("OPENAI_KEY")
 
 MODEL = "gpt-3.5-turbo"
 TEMPERATURE = 0.7
-MAX_TOKENS = 2048
+MAX_TOKENS = 1500
 
 
 st.write()
