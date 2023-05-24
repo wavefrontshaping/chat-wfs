@@ -59,7 +59,7 @@ def app():
 
     st.warning("""
         WARNING: Do not trust the results, this is experimental!
-        (But you car trust the sources...)
+        (But you can trust the sources...)
     """
     )
 
